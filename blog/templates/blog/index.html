@@ -1,0 +1,19 @@
+{% extends "blog/layout.html" %}
+
+<table>
+  <tbody>
+      {% for post in post_list %}
+    <tr>
+      <td>
+          <a href="{{ post.get_absolute_url }}">
+              {{ post.title }}
+          </a>
+      </td>
+    </tr>
+      {% endfor %}
+  </tbody>
+</table>
+
+<hr/>
+
+<a href="{% url "blog:post_new" %}">NEW POST</a>

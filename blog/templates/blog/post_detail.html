@@ -1,0 +1,30 @@
+<h1> {{ post.title }}</h1>
+
+{{ post.content|linebreaks }}
+
+<hr/>
+
+<ul>
+{% for comment in post.comment_set.all %}
+    <li>
+        {{ comment.message }}
+        &dash;
+        <a href="{% url "blog:comment_edit" post.pk comment.pk %}">
+        <small>{{ comment.updated_at }}</small>
+        </a>
+
+        <a href="{% url "blog:comment_delete" post.pk comment.pk %}">
+        <small>delete</small>
+        </a>
+
+
+    </li>
+{% endfor %}
+</ul>
+
+<hr/>
+
+<a href="{% url "blog:index" %}">LIST</a>
+<a href="{% url "blog:post_edit" post.pk %}">MODIFY</a>
+<a href="{% url "blog:post_delete" post.pk %}">DELETE</a>
+<a href="{% url "blog:comment_new" post.pk %}">COMMENT</a>
